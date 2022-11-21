@@ -8,6 +8,7 @@ import {ThemeStorage} from '../theme-picker/theme-storage/theme-storage';
 import {StyleManager} from '../style-manager';
 import {HttpClientModule} from '@angular/common/http';
 import {MatIconModule} from "@angular/material/icon";
+import {TokenService} from "../../service/token.service";
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,18 @@ import {MatIconModule} from "@angular/material/icon";
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-
+    checkLogin = false;
+    name: string;
+    avatar: string;
+    constructor(private tokenService: TokenService) {
+    }
+    ngOnInit(): void {
+        if (this.tokenService.getToken()){
+            this.checkLogin = true;
+            this.name = this.tokenService.getName();
+            this.avatar = this.tokenService.getAvatar();
+        }
+    }
 }
 
 @NgModule({
