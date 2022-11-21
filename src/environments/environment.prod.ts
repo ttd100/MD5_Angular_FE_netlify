@@ -1,5 +1,5 @@
 export const environment = {
   API_LOCAL :'http://localhost:8080/',
-  API_SERVE: 'https://jav06-test.herokuapp.com/',
+  API_SERVE: 'https://stardatjv06.herokuapp.com/',
   production: true
 };
