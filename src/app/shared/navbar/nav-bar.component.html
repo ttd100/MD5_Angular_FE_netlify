@@ -17,7 +17,7 @@
     <mat-icon color="accent" >add_reaction</mat-icon>
   </a>
   <div class="flex-spacer"></div>
-  <img *ngIf="checkLogin" src="{{avatar}}" style="width: 50px ; height: 50px; border-radius: 50%">
+  <img routerLink="profile" *ngIf="checkLogin" src="{{avatar}}" style="width: 50px ; height: 50px; border-radius: 50%">
   <app-theme-picker></app-theme-picker>
   <a mat-button class="docs-button docs-navbar-hide-small" target="_blank" href="https://github.com/vmudigal/ngx-audio-player"
     aria-label="GitHub Repository">
