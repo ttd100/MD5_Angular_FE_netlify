@@ -27,6 +27,15 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './form-login/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { ParentInputComponent } from './input/parent-input/parent-input.component';
+import { ChildInputComponent } from './input/child-input/child-input.component';
+import { ParentOutputComponent } from './output/parent-output/parent-output.component';
+import { ChildOutputComponent } from './output/child-output/child-output.component';
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment.prod";
+import { SingerAvatarComponent } from './upload/singer-avatar/singer-avatar.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
@@ -41,7 +50,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -56,7 +65,10 @@ export const appRoutes: Routes = [
     NavBarModule, FooterModule,
     NgxAudioPlayerModule,
     MatInputModule,
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FormsModule,
+    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
