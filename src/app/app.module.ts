@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './pages/home/home.component';
 import { GettingStartedComponent } from './pages/gettingstarted/gettingstarted.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgxAudioPlayerModule } from 'projects/ngx-audio-player/src/public_api';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -36,6 +36,12 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment.prod";
 import { SingerAvatarComponent } from './upload/singer-avatar/singer-avatar.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { MutilpleAvatarComponent } from './upload/mutilple-avatar/mutilple-avatar.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {AuthInterceptor} from "./service/auth.interceptor";
+import { UpdateAvatarComponent } from './profile/update-avatar/update-avatar.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogComponent } from './dialog/dialog/dialog.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
@@ -46,31 +52,37 @@ export const appRoutes: Routes = [
   },
   {path:'register',component:RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent}
+  {path:'profile', component: ProfileComponent,
+  children: [
+      {path:'update/avatar',component: UpdateAvatarComponent}
+  ]}
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatSlideToggleModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    NavBarModule, FooterModule,
-    NgxAudioPlayerModule,
-    MatInputModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    FormsModule,
-    RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent, MutilpleAvatarComponent, UpdateAvatarComponent, DialogComponent],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatSlideToggleModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        NavBarModule, FooterModule,
+        NgxAudioPlayerModule,
+        MatInputModule,
+        AngularFireStorageModule,
+        MatDialogModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        FormsModule,
+        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule
+    ],
+  providers: [
+      {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
