@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <form class="form_center">
+                    <h5>Nhập email để reset password</h5><br><br>
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Email: </mat-label>
+                        <input name="email"  [(ngModel)]="form.email" [formControl]="emailFormControl" matInput placeholder="Placeholder" minlength="3" maxlength="50" required>
+                        <mat-icon  color="accent" matSuffix>email</mat-icon>
+                        <mat-error *ngIf="emailFormControl.hasError( 'required')">Email is required!</mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError( 'email')">Email is invalid! Ex:dat054760@gmail.com</mat-error>
+                    </mat-form-field><br>
+                    <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Gửi địa chỉ email
+                        <mat-icon color="accent" matSuffix>email</mat-icon>
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

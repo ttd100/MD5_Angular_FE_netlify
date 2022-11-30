@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  private API_CATEGORIES = environment.API_LOCAL+ 'categories';
+  private API_CATEGORIES = environment.API_SERVE+ 'categories';
   constructor(private http: HttpClient) {
   }
   createCategory(category: Category):Observable<Category>{

@@ -52,6 +52,8 @@ import { DialogCategoryComponent } from './form-login/category/dialog-category/d
 import { CreateCategoryComponent } from './form-login/category/create-category/create-category.component';
 import { UpdateCategoryComponent } from './form-login/category/update-category/update-category.component';
 import { UpdatePasswordComponent } from './profile/update-password/update-password.component';
+import { ResetPasswordComponent } from './form-login/reset-password/reset-password.component';
+import { SendEmailComponent } from './form-login/send-email/send-email.component';
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
   {
@@ -60,7 +62,9 @@ export const appRoutes: Routes = [
     data: { title: 'Getting Started' }
   },
     {path:'register',component:RegisterComponent},
-  {path: 'login', component: LoginComponent},
+    {path: 'login', component: LoginComponent},
+    {path:'sendEmail', component: SendEmailComponent},
+    {path:'reset-password',component: ResetPasswordComponent},
   {path:'profile', component: ProfileComponent,canActivate:[AuthGuard],
   children: [
       {path:'update/avatar',component: UpdateAvatarComponent},
@@ -73,7 +77,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent, MutilpleAvatarComponent, UpdateAvatarComponent, DialogComponent, AdminManageComponent, CategoryComponent, DialogCategoryComponent, CreateCategoryComponent, UpdateCategoryComponent, UpdatePasswordComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent, MutilpleAvatarComponent, UpdateAvatarComponent, DialogComponent, AdminManageComponent, CategoryComponent, DialogCategoryComponent, CreateCategoryComponent, UpdateCategoryComponent, UpdatePasswordComponent, ResetPasswordComponent, SendEmailComponent],
     imports: [
         HttpClientModule,
         BrowserModule,
