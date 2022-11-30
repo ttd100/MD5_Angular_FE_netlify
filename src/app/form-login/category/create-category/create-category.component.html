@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <form class="form_center" #f="ngForm" (ngSubmit)="f.form.valid&&createCategory()">
+                    <mat-error class="alert alert-primary">{{status}}</mat-error>
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Name_category: </mat-label>
+                        <input name="name"  #name="ngModel"[(ngModel)]="form.name" matInput placeholder="Placeholder" required>
+                        <mat-icon  color="accent" matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-error *ngIf="name.hasError( 'required')">Name is required!</mat-error>
+                    </mat-form-field><br>
+                    <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create
+                        <mat-icon color="accent" matSuffix>ios_share</mat-icon>
+                    </button>
+                </form>
+                <app-singer-avatar (urlFromFireBase)="createAvatar($event)"></app-singer-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>

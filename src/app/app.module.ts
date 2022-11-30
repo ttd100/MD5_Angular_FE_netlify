@@ -42,7 +42,16 @@ import {AuthInterceptor} from "./service/auth.interceptor";
 import { UpdateAvatarComponent } from './profile/update-avatar/update-avatar.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogComponent } from './dialog/dialog/dialog.component';
-
+import {AuthGuard} from "./security/auth.guard";
+import { AdminManageComponent } from './profile/admin-manage/admin-manage.component';
+import {AdminGuard} from "./security/admin.guard";
+import { CategoryComponent } from './form-login/category/category/category.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { DialogCategoryComponent } from './form-login/category/dialog-category/dialog-category.component';
+import { CreateCategoryComponent } from './form-login/category/create-category/create-category.component';
+import { UpdateCategoryComponent } from './form-login/category/update-category/update-category.component';
+import { UpdatePasswordComponent } from './profile/update-password/update-password.component';
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
   {
@@ -50,16 +59,21 @@ export const appRoutes: Routes = [
     component: GettingStartedComponent,
     data: { title: 'Getting Started' }
   },
-  {path:'register',component:RegisterComponent},
+    {path:'register',component:RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent,
+  {path:'profile', component: ProfileComponent,canActivate:[AuthGuard],
   children: [
-      {path:'update/avatar',component: UpdateAvatarComponent}
-  ]}
+      {path:'update/avatar',component: UpdateAvatarComponent},
+      {path:'admin',component: AdminManageComponent,canActivate: [AdminGuard]},
+      {path:'change-password',component: UpdatePasswordComponent,canActivate:[AuthGuard]},
+  ]},
+    {path: 'create-category',component: CreateCategoryComponent,canActivate:[AuthGuard]},
+    {path: 'update-category/:id',component:UpdateCategoryComponent,canActivate:[AuthGuard]},
+    {path: 'category',component: CategoryComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent, MutilpleAvatarComponent, UpdateAvatarComponent, DialogComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, ProfileComponent, ParentInputComponent, ChildInputComponent, ParentOutputComponent, ChildOutputComponent, SingerAvatarComponent, MutilpleAvatarComponent, UpdateAvatarComponent, DialogComponent, AdminManageComponent, CategoryComponent, DialogCategoryComponent, CreateCategoryComponent, UpdateCategoryComponent, UpdatePasswordComponent],
     imports: [
         HttpClientModule,
         BrowserModule,
@@ -78,7 +92,7 @@ export const appRoutes: Routes = [
         MatDialogModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         FormsModule,
-        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule
+        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, FormsModule, ReactiveFormsModule, MatProgressSpinnerModule, MatProgressBarModule, MatTableModule, MatPaginatorModule
     ],
   providers: [
       {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

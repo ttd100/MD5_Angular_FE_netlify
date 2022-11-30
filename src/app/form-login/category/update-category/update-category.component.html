@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0">
+                <mat-card-title class="alert alert-primary">Old Category</mat-card-title>
+                <div *ngIf="category">
+                    <b>Name Category: </b>
+                    <i style="color: #f92672">{{category.name}}</i><br>
+                    <img class="img" [src]="category.avatar">
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px 0">
+                <form class="edit-category" #f="ngForm" (ngSubmit)="f.form.valid&&ngSubmit()" novalidate>
+                    <br><br>
+                    <mat-error class="alert alert-primary">{{status}}</mat-error>
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Name Category:</mat-label>
+                        <input matInput name="nameCategory" [(ngModel)]="category.name"  #nameCategory="ngModel" required>
+                        <mat-error *ngIf="nameCategory.hasError('required')">The name Category is required!</mat-error>
+                    </mat-form-field>
+<!--                    <app-upload-avatar (urlFromFileBase)="changeAvatar($event)"></app-upload-avatar>-->
+                    <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Update Category
+                        <mat-icon color="accent" matSuffix>category</mat-icon>
+                    </button>
+                </form>
+                <app-singer-avatar (urlFromFireBase)="changeAvatar($event)"></app-singer-avatar>
+            </mat-card>
+        </div>
+    </div>
+</div>
