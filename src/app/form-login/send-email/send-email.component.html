@@ -4,6 +4,7 @@
             <mat-card style="margin: 50px">
                 <form class="form_center" (ngSubmit)="handleSendEmail()">
                     <h5>Nhập email để reset password</h5><br><br>
+                    <mat-error class="alert alert-primary">{{status}}</mat-error>
                     <mat-form-field style="width: 350px" appearance="outline">
                         <mat-label>Email: </mat-label>
                         <input name="email"  [(ngModel)]="form.email" [formControl]="emailFormControl" matInput placeholder="Placeholder" minlength="3" maxlength="50" required>

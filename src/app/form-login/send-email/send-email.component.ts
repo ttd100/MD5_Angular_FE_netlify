@@ -11,6 +11,9 @@ import {SendEmail} from "../../model/SendEmail";
 export class SendEmailComponent implements OnInit {
     form: any = {};
     status = 'PLease enter your email!!'
+    error: any = {
+        message: 'Email not existed'
+    };
     // @ts-ignore
     sendEmail: SendEmail;
   emailFormControl = new FormControl('',[
@@ -29,10 +32,11 @@ export class SendEmailComponent implements OnInit {
         );
         this.authService.sendEmail(this.sendEmail).subscribe(data => {
             console.log('data sendEmail---->',data);
-            if (data.message === 'OK'){
-                status = 'Send email success!'
+
+            if (data.message === 'no'){
+                this.status = 'Email not found! Please try again!'
             }else {
-                status = 'send email failed! Please try again!'
+                this.status = 'Check Email, Click Link to Change Password!'
             }
         })
     }

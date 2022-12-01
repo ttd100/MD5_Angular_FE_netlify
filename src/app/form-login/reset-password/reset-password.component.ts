@@ -14,6 +14,7 @@ export class ResetPasswordComponent implements OnInit {
     form: any={};
   hide = true;
   token:any;
+  status = 'Enter your new Password'
 
   constructor(private route:ActivatedRoute,
               private authService: AuthService) { }
@@ -37,10 +38,10 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(bodyPassword,options).subscribe((data)=>{
       console.log(data)
       if (data.message === 'yes'){
-        status = 'Change Password Success!'
+        this.status = 'Change Password Success!'
       }
       if (data.message === 'no'){
-        status = 'Change Password Failed! Please try again!'
+        this.status = 'Change Password Failed! Please try again!'
       }
     })
 
