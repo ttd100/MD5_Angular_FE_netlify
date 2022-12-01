@@ -30,9 +30,9 @@ export class SendEmailComponent implements OnInit {
         this.authService.sendEmail(this.sendEmail).subscribe(data => {
             console.log('data sendEmail---->',data);
             if (data.message === 'OK'){
-                status = 'Change password success!'
+                status = 'Send email success!'
             }else {
-                status = 'Change password failed! Please try again!'
+                status = 'send email failed! Please try again!'
             }
         })
     }

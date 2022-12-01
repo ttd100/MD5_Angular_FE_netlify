@@ -36,6 +36,12 @@ export class ResetPasswordComponent implements OnInit {
 
     this.authService.resetPassword(bodyPassword,options).subscribe((data)=>{
       console.log(data)
+      if (data.message === 'yes'){
+        status = 'Change Password Success!'
+      }
+      if (data.message === 'no'){
+        status = 'Change Password Failed! Please try again!'
+      }
     })
 
   }

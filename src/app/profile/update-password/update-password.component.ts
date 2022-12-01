@@ -18,6 +18,7 @@ export class UpdatePasswordComponent implements OnInit {
   hide= true;
   updatePassword: UpdatePassword;
   status= 'Form Change password';
+    newhide: any;
 
   constructor(private authService: AuthService) { }
 
