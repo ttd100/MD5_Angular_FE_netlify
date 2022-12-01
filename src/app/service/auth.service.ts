@@ -9,6 +9,7 @@ import {ChangeAvatar} from "../model/ChangeAvatar";
 import {CategoryComponent} from "../form-login/category/category/category.component";
 import {UpdatePassword} from "../model/UpdatePassword";
 import {ResetPassword} from "../model/ResetPassword";
+import {SendEmail} from "../model/SendEmail";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AuthService {
   private  API_UPDATE_AVATAR = environment.API_SERVE + 'change/avatar';
   private API_UPDATE_PASSWORD = environment.API_SERVE + 'change/password';
   private API_RESET_PASSWORD = environment.API_SERVE + 'reset/password';
+  private API_SEND_EMAIL = environment.API_SERVE + 'send/email';
 
   // private API_CATEGORY = environment.API_SERVE + 'categories'
   constructor(private http: HttpClient) { }
@@ -40,6 +42,9 @@ export class AuthService {
   }
   resetPassword(resetPassword: ResetPassword,option:any): Observable<any>{
     return this.http.post(this.API_RESET_PASSWORD, resetPassword,option);
+  }
+  sendEmail(sendEmail: SendEmail):Observable<any>{
+    return this.http.post(this.API_SEND_EMAIL,sendEmail);
   }
 
   // showListCategory(category: CategoryComponent):Observable<any>{

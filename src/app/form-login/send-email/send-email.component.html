@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
-                <form class="form_center">
+                <form class="form_center" (ngSubmit)="handleSendEmail()">
                     <h5>Nhập email để reset password</h5><br><br>
                     <mat-form-field style="width: 350px" appearance="outline">
                         <mat-label>Email: </mat-label>
