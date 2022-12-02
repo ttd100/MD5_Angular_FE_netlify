@@ -2,6 +2,10 @@
     <div class="row">
         <div class="col-12" style="margin-top: 20px">
             <mat-card style="margin: 50px">
+                <div class="form_center mb-4" >
+                    <button  (click)="loginByGoogle()" mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Register by Google
+                    </button>
+                </div>
                 <form class="form_center" #f="ngForm" (ngSubmit)="f.form.valid&&login()">
                     <mat-error class="alert alert-primary">{{status}}</mat-error>
 <!--                    USERNAME-->

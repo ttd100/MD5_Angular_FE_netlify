@@ -49,4 +49,8 @@ export class RegisterComponent implements OnInit {
       this.status = 'Mail invalid! Please try again! '
     });
   }
+
+  loginByGoogle() {
+    console.log('Google')
+  }
 }
