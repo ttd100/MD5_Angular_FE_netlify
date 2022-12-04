@@ -50,7 +50,4 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  loginByGoogle() {
-    console.log('Google')
-  }
 }
